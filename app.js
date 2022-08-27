@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 
 app.get('/', (_req, res) => res.send('Challenge Full Stack Developer Waldo Vázquez'));
 
-const server = app.listen(3500, () => console.info('Server Connected to port 3500'));
+const server = app.listen(process.env.PORT || 3500, () => console.info(`Server Connected to port ${process.env.PORT || 3500}`));
 
 process.on('unhandledRejection', (err) => {
   console.info(`An error occurred: ${err.message}`);
