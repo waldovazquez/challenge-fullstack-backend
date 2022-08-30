@@ -26,7 +26,6 @@ exports.firstCarousel = async (req, res) => {
       .map((item) => ({
         ...item,
         branches: item.branches.sort((a, b) => a.location - b.location),
-        benefits: item.benefits.sort((a, b) => Number(a.type.slice(0, 2)) - Number(b.type.slice(0, 2))),
       }))
       .sort((a, b) => a.branches[0].location - b.branches[0].location);
     const accountsReturned = paginate(sortAccounts, page);
