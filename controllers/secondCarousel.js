@@ -4,18 +4,24 @@ const {
   accounts,
 } = require('./accounts.json');
 
-exports.secondCarousel = async (_req, res) => {
+const {
+  paginate,
+} = require('../utils/paginate');
+
+exports.secondCarousel = async (req, res) => {
   debug('secondCarousel called');
   try {
+    const {
+      page,
+    } = req.body;
     const accountsFilterByVoucher = accounts.filter((item) => {
       if (item.haveVoucher === true) {
         return item;
       }
       return null;
     });
-    const sortAccounts = accountsFilterByVoucher
-      .sort((a, b) => a.name.localeCompare(b.name));
-    const accountsReturned = sortAccounts.slice(0, 4);
+    const sortAccounts = accountsFilterByVoucher.sort((a, b) => a.name - b.name);
+    const accountsReturned = paginate(sortAccounts, page);
     return res.status(200).json(accountsReturned);
   } catch (e) {
     console.info('Error', e);
