@@ -13,7 +13,8 @@ exports.secondCarousel = async (req, res) => {
   try {
     const {
       page,
-    } = req.body;
+    } = req.query;
+
     const accountsFilterByVoucher = accounts.filter((item) => {
       if (item.haveVoucher === true) {
         return item;

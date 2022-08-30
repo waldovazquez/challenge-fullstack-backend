@@ -14,7 +14,7 @@ exports.firstCarousel = async (req, res) => {
     const {
       query,
       page,
-    } = req.body;
+    } = req.query;
 
     const accountsFilterByTourism = accounts.filter((item) => {
       if (item.tags.length > 0) {
